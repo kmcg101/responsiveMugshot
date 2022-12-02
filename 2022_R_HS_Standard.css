@@ -1,0 +1,453 @@
+@font-face {
+  font-family: AvenirNext-Regular;
+  src: url(./AvenirNext-Regular-08.ttf);
+}
+@font-face {
+  font-family: AvenirNext-Bold;
+  src: url(./AvenirNext-Bold-01.ttf);
+}
+@font-face {
+  font-family: AvenirNext-Demibold;
+  src: url(./AvenirNext-DemiBold-03.ttf);
+}
+@font-face {
+  font-family: AvenirNext-DemiboldItalic;
+  src: url(./AvenirNext-DemiBoldItalic-04.ttf);
+}
+
+:root {
+  /* --stage-width: 640px;
+  --stage-height: 158px;
+  --stage-area: calc(--stage-width * --stage-height); */
+  /* COLOR */
+  --clr-primary-400: #ffffff;
+  --clr-primary-900: #000000;
+
+  --clr-accent-400: #02bcdb;
+  --clr-accent-900: #083865;
+
+  /* FONT FACE  */
+  --ff-primary: "AvenirNext-Regular";
+  --ff-bold: "AvenirNext-Bold";
+  --ff-demibold: "AvenirNext-DemiBold";
+  --ff-demiboldItalic: "AvenirNext-DemiboldItalic";
+
+  /* FONT WEIGHT */
+  --fw-regular: 400;
+  --fw-semi-bold: 500;
+  --fw-bold: 700;
+
+  /* LINE HEIGHT */
+  --lh-300: 0.75;
+  --lh-500: 1.2em;
+  --lh-700: 1.2;
+
+  --maxWidth: 3000px;
+  --copyFontSize: 1;
+  /* FONT SIZE for ELEVATOR  */
+  /* footer */
+  --fs-300: calc(0.68 * var(--copyFontSize));
+  /* --fs-300: 2.3vw; */
+  /* subheadline (outside of headline container) */
+  --fs-400: calc(0.88 * var(--copyFontSize));
+  /* body */
+  --fs-500: var(--copyFontSize);
+  /* --fs-500: 3vw; */
+  /* headline */
+  --fs-700: calc(1.1 * var(--copyFontSize));
+  /* --fs-700: 5vw; */
+
+  --providerLogoHeightRatio: 1.59;
+  /* Provider logo */
+  --providerLogoHeight: calc(var(--providerLogoHeightRatio) * var(--copyFontSize));
+  /* 35px for copy = 22: 159% */
+}
+
+/* any bit of text will be given a series of classes:  (clr, ff, fw, fs, lh, cw) */
+
+/* @media (min-width: 50rem) {
+  html {
+    font-size: 31px;
+  }
+} */
+
+*,
+*:before,
+*:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* interactive elements */
+
+/* utility classes */
+
+/* any bit of text will be given a series of classes:  (clr, ff, fw, fs) */
+
+/* line height */
+
+#format {
+  margin-bottom: 30px;
+}
+.interactiveElements {
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+}
+input {
+  width: 10%;
+  margin-bottom: 15px;
+}
+
+.lh-300 {
+  line-height: var(--lh-300);
+}
+.lh-500 {
+  line-height: var(--lh-500);
+}
+.lh-700 {
+  line-height: var(--lh-700);
+}
+
+/* text color */
+.txt-clr-primary-400 {
+  color: var(--clr-primary-400);
+}
+.txt-clr-primary-900 {
+  color: var(--clr-primary-900);
+}
+
+/* background color */
+.bg-clr-primary-400 {
+  background-color: var(--clr-primary-400);
+}
+.bg-clr-primary-900 {
+  background-color: var(--clr-primary-900);
+}
+.bg-clr-accent-900 {
+  background-color: var(--clr-accent-900);
+}
+
+/* font weight */
+.fw-regular {
+  font-weight: var(--fw-regular);
+}
+.fw-semi-bold {
+  font-weight: var(--fw-semi-bold);
+}
+.fw-bold {
+  font-weight: var(--fw-bold);
+}
+
+/* font family */
+.ff-primary {
+  font-family: var(--ff-primary);
+  letter-spacing: 0.02em;
+}
+.ff-bold {
+  font-family: var(--ff-bold);
+  letter-spacing: 0.02em;
+}
+.ff-demibold {
+  font-family: var(--ff-demibold);
+  letter-spacing: 0.02em;
+}
+.ff-demiboldItalic {
+  font-family: var(--ff-demiboldItalic);
+  letter-spacing: 0.02em;
+}
+
+/* font size */
+.fs-300 {
+  font-size: var(--fs-300);
+}
+.fs-400 {
+  font-size: var(--fs-400);
+}
+.fs-500 {
+  font-size: var(--fs-500);
+}
+.fs-700 {
+  font-size: var(--fs-700);
+}
+
+/* POSITION CLASSES */
+
+/* containers */
+.flexContainerColumn {
+  display: flex;
+  flex-direction: column;
+}
+.flexContainerRightAligned {
+  display: flex;
+  flex-direction: column;
+  align-items: right;
+}
+.flexContainerRow {
+  display: flex;
+  flex-direction: row;
+}
+.flexCenterVertical {
+  align-items: center;
+}
+.flexAlignBaseline {
+  align-items: baseline;
+}
+.marginLeftText {
+  margin-left: calc(0.4 * var(--copyFontSize));
+}
+.marginRightText {
+  margin-right: calc(0.4 * var(--copyFontSize));
+}
+
+/*
+.marginRight-pt1-rem {
+  margin-right: calc(0.1 * var(--copyFontSize));
+}
+.marginLeft-pt1-rem {
+  margin-left: calc(0.1 * var(--copyFontSize));
+}
+.marginTop-pt1-rem {
+  margin-top: calc(0.1 * var(--copyFontSize));
+}
+.marginBottom-pt1-rem {
+  margin-bottom: calc(0.1 * var(--copyFontSize));
+}
+*/
+
+.positionAbsoluteBottomRight {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+.positionAbsoluteBottomLeft {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.positionAbsoluteBottomLeft {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.positionRelative {
+  position: relative;
+}
+
+.inlineImageSizeEqualsText {
+  height: calc(0.75 * var(--copyFontSize));
+  width: auto;
+  align-self: baseline;
+}
+
+html {
+  font-size: 22px;
+}
+
+/* this is the entire screen */
+.fullScreen {
+  width: 100vw;
+  height: 100vh;
+  max-width: var(--maxWidth);
+}
+
+.playerDiv {
+  position: absolute;
+  width: 100%;
+  container-type: inline-size;
+  container-name: playerDiv;
+  max-width: var(--maxWidth);
+}
+.elevator .playerDiv {
+  height: 33%;
+}
+.landscape .playerDiv {
+  height: 31%;
+}
+.portrait .playerDiv {
+  height: 25%;
+}
+
+/* this is the area that covers the div we were given */
+.ourCanvas {
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  position: relative;
+}
+/* .elevator .ourCanvas {
+  padding-left: 2.81%;
+  padding-right: 1.56%;
+  padding-top: 0%;
+  padding-bottom: 0%;
+}
+.landscape .ourCanvas {
+  padding-left: 2.25%;
+  padding-right: 3.91%;
+  padding-top: 0.97%;
+  padding-bottom: 0%;
+}
+.portrait .ourCanvas {
+  padding-left: 3.19%;
+  padding-right: 2.78%;
+  padding-top: 3.28%;
+  padding-bottom: 0%;
+} */
+.labelText {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.labelTextContainer {
+  /* display: flex; */
+  font-size: 24px;
+}
+
+/* this centers it based on the width of the div */
+/* position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); */
+
+/* @container playerDiv (min-width: 0px) {
+  .ourCanvas {
+    padding-right: 0%;
+    padding-left: 0%;
+    padding-bottom: 0%;
+    padding-top: 0%;
+  }
+} */
+/* @container playerDiv (min-width: 1024px) {
+  .ourCanvas {
+    padding-right: 2%;
+    padding-left: 2%;
+    padding-top: 0%;
+    padding-bottom: 0%;
+  }
+} */
+
+.underline {
+  height: 2px;
+  width: 99%;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 40%, rgba(0, 0, 0, 0) 100%);
+  margin-top: 0.1em;
+  margin-bottom: 0.1em;
+}
+
+.testBackgroundColor {
+  background-color: rgba(240, 8, 240, 0.3);
+}
+.providerLogoSize {
+  width: auto;
+  height: var(--providerLogoHeight);
+  /* height: 5vw; */
+  /* min-height: 35px; */
+}
+
+.standardAd {
+  position: relative;
+}
+.elevator .standardAd {
+  height: 67%;
+  background-color: yellow;
+}
+.landscape .standardAd {
+  height: 69%;
+  background-color: thistle;
+}
+.portrait .standardAd {
+  height: 75%;
+  background-color: tan;
+}
+
+/* this is the part adhere's to its parent's padding */
+.workingArea {
+  width: 100%;
+  height: 100%;
+  background: white;
+}
+.workingArea {
+  display: flex;
+  justify-content: left;
+}
+
+.leftContainer {
+  width: 25%;
+  position: relative;
+  background-color: cyan;
+  /* display: flex;
+  align-items: center;
+  justify-content: left; */
+}
+.leftImage {
+  /* width: 85%; */
+  max-height: 92%;
+  object-fit: contain;
+  object-position: left top;
+  margin-right: 0.9em;
+}
+.rightContainer {
+  /* width: 75%; */
+  position: relative;
+}
+
+#myVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.version {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.7rem;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+.format {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 1.6rem;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+
+.textContainer {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1rem;
+  position: absolute;
+  top: 100px;
+  left: 20px;
+}
+
+.flexTextContainer {
+  display: flex;
+}
+.copyCurrentValue {
+  margin-left: 1.5rem;
+}
+.topMargin40 {
+  margin-top: 2rem;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+.valueText {
+  margin-top: 0.3rem;
+  margin-left: 1rem;
+  font-size: 1rem;
+}
+
+.radioButtons {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  margin-top: 20px;
+  font-size: 1rem;
+}
+input[type="radio"] {
+  margin-top: 14px;
+  vertical-align: middle;
+}
+.curveImage {
+  display: relative;
+  margin-left: -45px;
+}

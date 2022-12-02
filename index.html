@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <!-- cap-initialize:start -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./jquery-3.2.1.min.js"></script>
+    <script src="./capHtml5.js"></script>
+    <script src="./initialize.js"></script>
+    <!-- <script src="../../_commonAssets/js/test_js.js"></script> -->
+    <script>
+      $(function () {
+        cap.injectArguments();
+      });
+    </script>
+
+    <!-- cap-initialize:end -->
+
+    <link cap-id="Avenir_Roman_css" cap-target="href" cap-source="asset" cap-edit="common" cap-name="Avenir_Roman" cap-category="css" rel="stylesheet" type="text/css" />
+    <link cap-id="cssReset" cap-target="href" cap-source="asset" cap-category="css" cap-name="reset" cap-edit="common" cap-order="1" rel="stylesheet" type="text/css" />
+    <link cap-id="css" cap-target="href" cap-source="asset" cap-edit="upload" cap-order="2" rel="stylesheet" type="text/css" />
+  </head>
+
+  <body>
+    <div id="fullScreen" class="fullScreen elevator">
+      <div class="standardAd">
+        <!-- <div class="videoHolder">
+          <video id="myVideo" autoplay>
+            <source src="./standardad.mp4" type="video/mp4" />
+          </video>
+        </div> -->
+        <div class="interactiveElements">
+          <div id="format" class="format"></div>
+
+          <div class="labelTextContainer">
+            <div class="version">
+              version 352.101.4
+              <div class="radioButtons">
+                <input type="radio" id="quad" name="easeFunction" value="quad" checked />
+                <label for="quad">quad</label><br />
+
+                <input type="radio" id="cubic" name="easeFunction" value="cubic" />
+                <label for="cubic">cubic</label><br />
+
+                <input type="radio" id="expo" name="easeFunction" value="expo" />
+                <label for="expo">expo</label><br />
+
+                <input type="radio" id="circ" name="easeFunction" value="circ" />
+                <label for="circ">circ</label><br />
+
+                <input type="radio" id="quart" name="easeFunction" value="quart" />
+                <label for="quart">quart</label><br />
+                <img id="curveImage" class="curveImage" src="./images/quad.jpg" alt="" />
+              </div>
+            </div>
+            <div class="textContainer">
+              <div class="flexTextContainer">
+                <div class="labelText">Copy size:</div>
+                <div id="copyCurrentValue" class="copyCurrentValue"></div>
+              </div>
+              <div class="tableContainer">
+                <div class="labelText topMargin40">Copy font size breakpoint values:</div>
+                <div class="valueText">Elevator (640x480): 22px</div>
+                <div class="valueText">Landscape (1024x720): 31px</div>
+                <div class="valueText">Portrait (720x1280): 31px</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="playerDiv">
+        <div id="ourCanvas" class="ourCanvas">
+          <div id="workingArea" class="workingArea positionRelative">
+            <!-- <div class="leftContainer"> -->
+            <img class="leftImage" src="./images/image.png" alt="" />
+            <!-- </d iv> -->
+            <div class="rightContainer">
+              <div class="headlineContainer flexContainerRow flexAlignBaseline">
+                <img onerror='this.style.display = "none"' class="inlineImageSizeEqualsText marginRightText" src="" />
+
+                <div id="headline" class="headline lh-500 txt-clr-primary-900 fs-700 ff-demibold marginRightText">Road Trip Tracks</div>
+
+                <img onerror='this.style.display = "none"' class="inlineImageSizeEqualsText marginRightText" src="" />
+              </div>
+
+              <div class="underline marginTop-pt1-rem marginBottom-pt1-rem"></div>
+              <div id="subHeadline" class="subHeadlineText ff-demiboldItalic fs-400">The Talking heads - Road to Nowhere</div>
+
+              <div id="copy" class="copy lh-500 txt-clr-primary-900 fs-500 ff-primary">The gospel-choir intro to this upbeat single makes for a great start to any mix, and the song celebrate the journey over the destination.</div>
+
+              <div class="footerContainer providerLogoSize positionAbsoluteBottomLeft flexContainerRow flexCenterVertical">
+                <!-- <div class="footerImageContainer">
+                <img src="./2020_Twitter_Logo_White.svg" alt="alt" />
+              </div> -->
+                <div id="footer" class="footer lh-500 txt-clr-primary-300 fs-300 ff-primary">Footer</div>
+              </div>
+
+              <img class="positionAbsoluteBottomRight providerLogoSize" src="./partner.svg" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.designMode = "on";
+      let easingFormula = "quad";
+
+      function clearClassList() {
+        const fullScreen = document.getElementById("fullScreen");
+        const formatText = document.getElementById("format");
+        formatText.innerHTML = "";
+        fullScreen.classList.remove("portrait");
+        fullScreen.classList.remove("landscape");
+        fullScreen.classList.remove("elevator");
+      }
+      function determineAspectRatioClass() {
+        // get the font size of the copy class
+        const copyElement = document.getElementById("copy");
+        const copyStyle = window.getComputedStyle(copyElement);
+
+        // get the width and height of the working area
+        const currentStage = document.getElementById("ourCanvas");
+        const stageWidth = currentStage.offsetWidth;
+        const stageHeight = currentStage.offsetHeight;
+        const stageArea = stageWidth * stageHeight;
+        const stageAreaAspectRatio = stageWidth / stageHeight;
+
+        const cssRoot = document.querySelector(":root");
+
+        // get width and height of class fullScreen
+        // these measurements determine aspect ratio e, l, or p
+        let fullScreenContainer = document.getElementById("fullScreen");
+        const currentWidth = fullScreenContainer.offsetWidth;
+        const currentHeight = fullScreenContainer.offsetHeight;
+        const fullScreenAspectRatio = currentWidth / currentHeight;
+
+        clearClassList();
+        const formatText = document.getElementById("format");
+
+        let fontMultiplier = 1;
+
+        const fullScreenAspectRatioArray = [1.333, 1.422, 1];
+        const stageAreaAspectRatioArray = [4.05, 4.59, 2.21];
+        //
+        // this one is for full screen
+        //
+        if (fullScreenAspectRatio < fullScreenAspectRatioArray[2]) {
+          fullScreenContainer.classList.add("portrait");
+          formatText.innerHTML = "Portrait";
+        } else if (fullScreenAspectRatio < fullScreenAspectRatioArray[1] && fullScreenAspectRatio >= fullScreenAspectRatioArray[2]) {
+          fullScreenContainer.classList.add("elevator");
+          formatText.innerHTML = "Elevator";
+        } else {
+          fullScreenContainer.classList.add("landscape");
+          formatText.innerHTML = "Landscape";
+        }
+        //
+        // this measures for the content area and changes provider logo size
+        //
+        if (stageAreaAspectRatio < stageAreaAspectRatioArray[2]) {
+          cssRoot.style.setProperty("--providerLogoHeightRatio", "1.29");
+        } else if (stageAreaAspectRatio < stageAreaAspectRatioArray[1] && stageAreaAspectRatio >= stageAreaAspectRatioArray[2]) {
+          cssRoot.style.setProperty("--providerLogoHeightRatio", "1.59");
+        } else {
+          cssRoot.style.setProperty("--providerLogoHeightRatio", "1.29");
+        }
+        const maxWidth = 3000;
+        const maxFontSize = 58;
+        const widthPercent = stageWidth / maxWidth;
+        let percentValue = 1;
+        if (easingFormula === "expo") {
+          // expo
+          console.log("expo");
+          percentValue = 1 - Math.pow(2, -10 * widthPercent);
+        } else if (easingFormula === "circ") {
+          // circ
+          percentValue = Math.sqrt(1 - Math.pow(widthPercent - 1, 2));
+          console.log("circ");
+        } else if (easingFormula === "quart") {
+          // quart
+          percentValue = 1 - Math.pow(1 - widthPercent, 4);
+          console.log("quart");
+        } else if (easingFormula === "cubic") {
+          // cubic
+          percentValue = 1 - Math.pow(1 - widthPercent, 3);
+          console.log("cubic");
+        } else if (easingFormula === "quad") {
+          // quadratic
+          percentValue = 1 - (1 - widthPercent) * (1 - widthPercent);
+          console.log("quad");
+        }
+
+        //
+
+        const copyValue = percentValue * maxFontSize;
+
+        const copyValueString = copyValue.toString() + "px";
+        cssRoot.style.setProperty("--copyFontSize", copyValueString);
+        document.getElementById("workingArea").style.fontSize = copyValueString;
+
+        const copyFontSize = copyStyle.getPropertyValue("font-size");
+        document.getElementById("copyCurrentValue").innerHTML = copyFontSize;
+      }
+      $("input[type=radio][name=easeFunction]").change(function (e) {
+        easingFormula = e.target.id;
+        document.getElementById("curveImage").src = "./images/" + e.target.id + ".jpg";
+        determineAspectRatioClass();
+      });
+
+      $(document).ready(function () {
+        console.log("ready");
+        setTimeout(() => {
+          determineAspectRatioClass();
+        }, 70);
+
+        addEventListener("resize", (event) => {
+          //populateText();
+          determineAspectRatioClass();
+        });
+      });
+    </script>
+  </body>
+</html>
